@@ -79,6 +79,20 @@ Transient simulation at nominal conditions: the five ring nodes oscillating with
 
 <img src="img/vco-transient.png" alt="Transient waveforms of the five ring-oscillator nodes and the control voltages" width="80%">
 
+**Layout.** Every cell was drawn by hand and passed DRC and LVS before moving up a level: the inverter and the bias cell, then the five inverters placed side by side to form the ring, and finally the complete VCO with the bias cell attached.
+
+| Inverter cell | Bias cell |
+|---|---|
+| <img src="img/layout-cs-inverter.png" alt="Layout of the current-starved inverter cell" height="260"> | <img src="img/layout-bias-cell.png" alt="Layout of the bias cell" height="260"> |
+
+<img src="img/layout-ring.png" alt="Layout of the five-stage ring oscillator" width="80%">
+
+<img src="img/layout-vco.png" alt="Layout of the complete VCO: bias cell on the left, ring oscillator on the right" width="80%">
+
+**Output buffer.** With the 5-stage scaled buffer, each stage sharpens the signal until the output is a clean square wave that no longer depends on the load:
+
+<img src="img/vco-buffer-transient.png" alt="Waveforms after each buffer stage, ending in a square wave at the output" width="80%">
+
 **Results**
 
 | Metric | Value |
