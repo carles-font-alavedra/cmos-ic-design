@@ -4,6 +4,16 @@ Analog and RF integrated-circuit design in **Cadence Virtuoso** on the **AMS 0.3
 
 Designed and simulated in 2024/25.
 
+**Why.** Every wireless device, from a phone to an IoT sensor, has the same analogue front-end before any digital processing: a low-noise amplifier that picks up the weak antenna signal, amplifiers that condition it, and an oscillator that sets the frequency everything is tuned to. These blocks cannot be bought as code. They are drawn transistor by transistor, and they have to work across manufacturing variations, not only in an ideal simulation. This repo covers that front-end, block by block:
+
+```
+antenna ─► LNA ─► differential amplifier / OpAmp ─► (mixer, ADC …)
+                                  ▲
+                          VCO (local oscillator)
+```
+
+The emphasis is on what separates a schematic from a chip that works: matching, noise, layout, parasitics and statistical (Monte-Carlo) verification.
+
 ## Highlights
 
 | Project | What I designed | Key results |
@@ -16,6 +26,8 @@ Designed and simulated in 2024/25.
 ---
 
 ## 1. RF low-noise amplifier (1.84 GHz)
+
+*Why it matters:* the LNA is the first block after the antenna, so its noise sets the sensitivity of the whole receiver: noise added here cannot be removed later.
 
 A narrowband LNA for the GSM-1800 band, designed to match a 50 Ω antenna and amplify the signal while adding as little noise as possible.
 
@@ -56,6 +68,8 @@ The noise summary showed that, after the antenna itself, the gate inductor (21 %
 
 ## 2. Differential amplifier and simple OpAmp
 
+*Why it matters:* real chips are noisy and no two transistors are identical. Differential circuits cancel common noise and distortion, but only as well as the two halves match, which is why mismatch has to be measured statistically and handled in the layout.
+
 **What I did**
 - Designed a fully-differential common-source stage and improved its gain from 7.7 to 10.8 by doubling the input transistors' width, keeping the same current and bandwidth (≈4.5 MHz).
 - Compared linearity against the single-ended version with the same gain and a 150 mV input.
@@ -91,6 +105,8 @@ The input pair (MP1/MP2) and the load (MN3/MN4) are interdigitated in a common-c
 <img src="img/opamp-input-pair.png" alt="Common-centroid layout of the input pair and active load, with IN+ and IN- connections" width="80%">
 
 ## 3. Voltage-controlled ring oscillator
+
+*Why it matters:* a VCO generates the clock or carrier frequency of a system, and it is the core of the PLLs that tune radios and clock processors. A design is only finished when the layout, with its parasitics, still oscillates where the schematic said it would.
 
 **What I did**
 - Built a current-starved inverter, a 5-stage ring oscillator and a bias cell, so a single control voltage sets the frequency.
@@ -136,6 +152,8 @@ Transient simulation at nominal conditions: the five ring nodes oscillating with
 | Frequency drop with a 400 fF load and no buffer | down to 63 MHz |
 
 ## 4. Fundamentals
+
+*Why it matters:* every block above relies on these models. Knowing where the transistor deviates from the textbook (short-channel effects, body effect) is what makes the hand calculations agree with simulation.
 
 - **MOSFET characterization:** threshold voltage, channel-length modulation (λ ≈ 0.05 V⁻¹), body effect and the long- vs short-channel behaviour of the AMS 0.35 µm devices.
 - **CMOS inverter:** delay and rise/fall times, the effect of fan-out, and pre- vs post-layout timing with parasitics.
