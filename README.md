@@ -19,11 +19,19 @@ Microelectronic Design (DMIC) course, ETSETB–UPC, 2024/25. Labs 3 and 4 were d
 
 A narrowband LNA for the GSM-1800 band, designed to match a 50 Ω antenna and amplify the signal while adding as little noise as possible.
 
+Cascode LNA with inductive source degeneration (L_S), gate inductor (L_G) for the input resonance, drain inductor (L_D) as a tuned load, and a current mirror (M3, I_REF) setting the bias. Left, the target circuit; right, my Virtuoso schematic:
+
+<img src="img/lna-circuit.png" alt="LNA circuit diagram next to the Cadence Virtuoso schematic" width="100%">
+
 **What I did**
 - Biased the input transistor to the target transconductance (30.5 mS) by sweeping its gate voltage, then replaced the ideal bias with a current mirror and re-tuned the reference current to reproduce the same operating point.
 - Tuned the source and gate inductors and the added capacitances until the input impedance hit 50 Ω at 1.84 GHz (49.5 Ω real, ≈0 Ω imaginary), and tuned the drain inductor to centre the output resonance on the same frequency.
 - Checked the hand-calculated gain against simulation: including the inductors' finite Q, theory predicts 29.6 dB versus 31.3 dB simulated.
 - Characterized matching with S-parameters and analysed noise source by source.
+
+Final schematic with the DC operating point annotated (input transistor at about 4 mA and 30 mS):
+
+<img src="img/lna-operating-point.png" alt="Final LNA schematic with DC operating point annotated" width="80%">
 
 **Results**
 
