@@ -1,8 +1,8 @@
-# CMOS Analog & RF IC Design Labs
+# CMOS Analog & RF IC Design
 
 Analog and RF integrated-circuit design in **Cadence Virtuoso** on the **AMS 0.35 µm CMOS** process: from transistor characterization to a full RF low-noise amplifier, including layout, parasitic extraction and statistical (Monte-Carlo) verification.
 
-Microelectronic Design (DMIC) course, ETSETB–UPC, 2024/25. Labs 3 and 4 were done in a pair with Marc Maldonado; other versions of the reports were done with Arnau Llopart.
+Designed and simulated in 2024/25.
 
 ## Highlights
 
