@@ -65,6 +65,20 @@ The Monte-Carlo runs were the most useful part: an ideal simulation gives zero c
 - Ran **post-layout** simulations with extracted parasitics and compared them with the schematic.
 - Designed a 5-stage scaled buffer so the oscillation can drive an off-chip load without its frequency depending on the load.
 
+Each cell was built from its circuit diagram (left) to the Virtuoso schematic (right), then combined hierarchically:
+
+| Current-starved inverter | Bias cell |
+|---|---|
+| <img src="img/vco-cs-inverter.png" alt="Current-starved inverter: circuit and Virtuoso schematic" width="100%"> | <img src="img/vco-bias-cell.png" alt="Bias cell generating Vcs_p from Vcs_n" width="100%"> |
+
+<img src="img/vco-ring.png" alt="Five current-starved inverters connected in a ring" width="80%">
+
+<img src="img/vco-top.png" alt="Complete VCO: bias cell driving the ring oscillator from a single control voltage" width="80%">
+
+Transient simulation at nominal conditions: the five ring nodes oscillating with a 1.72 ns period (583 MHz), with the control voltages below.
+
+<img src="img/vco-transient.png" alt="Transient waveforms of the five ring-oscillator nodes and the control voltages" width="80%">
+
 **Results**
 
 | Metric | Value |
