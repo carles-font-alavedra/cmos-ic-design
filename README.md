@@ -29,7 +29,7 @@ Cascode LNA with inductive source degeneration (L_S), gate inductor (L_G) for th
 - Checked the hand-calculated gain against simulation: including the inductors' finite Q, theory predicts 29.6 dB versus 31.3 dB simulated.
 - Characterized matching with S-parameters and analysed noise source by source.
 
-Final schematic with the DC operating point annotated (input transistor at about 4 mA and 30 mS):
+Final schematic, after re-tuning the reference current, with DC voltages and operating point annotated (input transistor at 3.99 mA and 30 mS):
 
 <img src="img/lna-operating-point.png" alt="Final LNA schematic with DC operating point annotated" width="80%">
 
