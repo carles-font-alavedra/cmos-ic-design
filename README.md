@@ -43,6 +43,15 @@ Final schematic, after re-tuning the reference current, with DC voltages and ope
 | Noise figure | 2.63 dB |
 | Output SNR for a −70 dBm input (200 kHz channel) | 31.3 dB |
 
+Input impedance and output voltage around the band: Re(Zin) = 49.5 Ω and Im(Zin) ≈ 0 at 1.84 GHz, exactly where the output peaks (36.75 V for a 1 V AC input):
+
+<img src="img/lna-zin-vout.png" alt="Re(Zin), Im(Zin) and Vout versus frequency with markers at 1.84 GHz" width="80%">
+
+| Input match (S11) | Noise figure |
+|---|---|
+| <img src="img/lna-s11.png" alt="S11 versus frequency: −38.6 dB at 1.84 GHz, below −10 dB from 1.58 to 2.21 GHz" width="100%"> | <img src="img/lna-noise-figure.png" alt="Noise figure versus frequency: 2.63 dB at 1.84 GHz" width="100%"> |
+| −38.6 dB at 1.84 GHz; below −10 dB from 1.58 to 2.21 GHz | 2.63 dB at 1.84 GHz |
+
 The noise summary showed that, after the antenna itself, the gate inductor (21 %) and the input transistor (16 %) dominate the output noise, which points to where a next iteration should improve.
 
 ## 2. Differential amplifier and simple OpAmp
