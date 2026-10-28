@@ -67,12 +67,28 @@ The noise summary showed that, after the antenna itself, the gate inductor (21 %
 | Metric | Value |
 |---|---|
 | THD at 150 mV input | 1.64 % differential vs 10.19 % single-ended |
-| Gain spread, mismatch only (±1σ) | 10.40 – 10.68 |
+| Gain with mismatch (100 Monte-Carlo runs) | 10.80 ± 0.11 (range 10.47 – 11.02) |
 | Gain spread, mismatch + process (±1σ) | 6.7 – 12.5 |
 | CMRR with mismatch (mean / worst case) | 67.4 dB / 57.8 dB |
 | OpAmp gain / bandwidth | 86.7 V/V / 490 kHz |
 
 The Monte-Carlo runs were the most useful part: an ideal simulation gives zero common-mode gain, while mismatch alone brings the CMRR down to 58 dB in the worst case.
+
+**Monte-Carlo, mismatch.** Histogram of the differential gain over 100 runs, and the spread of every key parameter (output resistance and transconductance of the input pair, tail current, bandwidth and gain):
+
+<img src="img/mc-gain-histogram.png" alt="Histogram of the differential gain over 100 Monte-Carlo runs: mean 10.80, standard deviation 0.11" width="80%">
+
+<img src="img/mc-all-parameters.png" alt="Monte-Carlo histograms of rds, gm, tail current, bandwidth and gain" width="100%">
+
+**OpAmp layout.** The full layout, with the PMOS current mirror on top and the differential pair and active load below, inside the N-well biasing ring:
+
+| Full layout | Current mirror (MPref / MP5) |
+|---|---|
+| <img src="img/opamp-layout.png" alt="Full layout of the simple OpAmp" height="420"> | <img src="img/opamp-current-mirror.png" alt="Interdigitated layout of the current-mirror transistors and their routing" width="100%"> |
+
+The input pair (MP1/MP2) and the load (MN3/MN4) are interdigitated in a common-centroid arrangement, so that process gradients affect both sides of the amplifier equally:
+
+<img src="img/opamp-input-pair.png" alt="Common-centroid layout of the input pair and active load, with IN+ and IN- connections" width="80%">
 
 ## 3. Voltage-controlled ring oscillator
 
