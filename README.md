@@ -19,9 +19,9 @@ Designed and simulated in 2024/25.
 
 A narrowband LNA for the GSM-1800 band, designed to match a 50 Ω antenna and amplify the signal while adding as little noise as possible.
 
-Cascode LNA with inductive source degeneration (L_S), gate inductor (L_G) for the input resonance, drain inductor (L_D) as a tuned load, and a current mirror (M3, I_REF) setting the bias. Left, the target circuit; right, my Virtuoso schematic:
+Cascode LNA with inductive source degeneration (L_S), gate inductor (L_G) for the input resonance, drain inductor (L_D) as a tuned load, and a current mirror (M3, I_REF) setting the bias:
 
-<img src="img/lna-circuit.png" alt="LNA circuit diagram next to the Cadence Virtuoso schematic" width="100%">
+<img src="img/lna-circuit.png" alt="LNA schematic in Cadence Virtuoso" width="80%">
 
 **What I did**
 - Biased the input transistor to the target transconductance (30.5 mS) by sweeping its gate voltage, then replaced the ideal bias with a current mirror and re-tuned the reference current to reproduce the same operating point.
@@ -82,9 +82,9 @@ The Monte-Carlo runs were the most useful part: an ideal simulation gives zero c
 
 **OpAmp layout.** The full layout, with the PMOS current mirror on top and the differential pair and active load below, inside the N-well biasing ring:
 
-| Full layout | Current mirror (MPref / MP5) |
-|---|---|
-| <img src="img/opamp-layout.png" alt="Full layout of the simple OpAmp" height="420"> | <img src="img/opamp-current-mirror.png" alt="Interdigitated layout of the current-mirror transistors and their routing" width="100%"> |
+| Full layout | Current mirror (MPref / MP5) | Mirror routing |
+|---|---|---|
+| <img src="img/opamp-layout.png" alt="Full layout of the simple OpAmp" height="360"> | <img src="img/opamp-current-mirror.png" alt="Interdigitated layout of the current-mirror transistors" height="360"> | <img src="img/opamp-mirror-routing.png" alt="Metal routing of the current mirror" height="360"> |
 
 The input pair (MP1/MP2) and the load (MN3/MN4) are interdigitated in a common-centroid arrangement, so that process gradients affect both sides of the amplifier equally:
 
@@ -98,7 +98,7 @@ The input pair (MP1/MP2) and the load (MN3/MN4) are interdigitated in a common-c
 - Ran **post-layout** simulations with extracted parasitics and compared them with the schematic.
 - Designed a 5-stage scaled buffer so the oscillation can drive an off-chip load without its frequency depending on the load.
 
-Each cell was built from its circuit diagram (left) to the Virtuoso schematic (right), then combined hierarchically:
+Each cell was built as its own Virtuoso schematic and then combined hierarchically:
 
 | Current-starved inverter | Bias cell |
 |---|---|
